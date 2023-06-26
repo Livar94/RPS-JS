@@ -5,15 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../../styles.css">
 </head>
 <body>
 
-    <p>you joined a game</p>
+    <header>
+        <h1>Rock Paper Scissors Online</h1>
+    </header>
+
+    <div class="score-board">
+        <div id="user-label" class="badge">user1</div>
+        <div id="computer-label" class="badge">user2</div>
+        <span id="user-score">0</span>:<span id="computer-score">0</span>
+    </div>
+
+    <div class="result">
+        <p>Paper covers rock. You win!</p>
+    </div>
+
+    <div class="choices">
+        <div class="choice" id="r">
+            <img src="../../images/rock.png" alt="">
+        </div>
+        <div class="choice" id="p">
+            <img src="../../images/paper.png" alt="">
+        </div>
+        <div class="choice" id="s">
+            <img src="../../images/scissors.png" alt="">
+        </div>
+
+    </div>
 
 
 
 
-    <script src="online.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>
