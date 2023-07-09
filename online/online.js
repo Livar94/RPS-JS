@@ -15,44 +15,45 @@ createGameForm.addEventListener('submit', (e) => {
 
 })
 
-// function getToken() {
+function getToken() {
 
-//     fetch("http://rps-backend-production.up.railway.app/api/user/auth/token", {
-//       method: "post",
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//       token = data;
-//     })
-//     .catch(error => {
-//       console.error(error)
-//     });
-// }
-
-async function getToken() {
-
-  try {
-    const response = await fetch("http://rps-backend-production.up.railway.app/api/user/auth/token", {
-      method: "POST", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
+    fetch("http://localhost:8080/api/user/auth/token", {
+      method: "POST",
+    //   headers: new Headers({
+    //     accept: 'application/json',
+    //     'Content-Type': 'application/json'
+    // })
+    })
+    .then(response => response.json())
+    .then(data => {
+      token = data;
+    })
+    .catch(error => {
+      console.error(error)
     });
-
-    const result = await response.json();
-    console.log("Success:", result);
-    // token = result;
-  } catch (error) {
-    console.error("Error:", error);
-  }
-
 }
 
+// async function getToken() {
+
+//   try {
+//     const response = await fetch("http://localhost:8080/api/user/auth/token", {
+//       method: "POST", // or 'PUT'
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     });
+
+//     const result = await response.json();
+//     console.log("Success:", result);
+//     // token = result;
+//   } catch (error) {
+//     console.error("Error:", error);
+//   }
+
+// }
+
 function setName (name) {
-  fetch("http://rps-backend-production.up.railway.app/api/user/auth/token", {
+  fetch("http://localhost:8080/api/user/auth/token", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -72,13 +73,15 @@ function setName (name) {
 }
 
 function createGame() {
-  fetch("http://rps-backend-production.up.railway.app/api/games/game", {
+  fetch("http://localhost:8080/api/games/game", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        // playerId: token
         playerId: token
+        
       })
     })
     .then(response => response.json())
@@ -89,34 +92,13 @@ function createGame() {
     })
     .catch(error => {
       console.log(error, "createGame");
-      localStorage.setItem("gameInfo", JSON.stringify(
-        {
-          "status": 200,
-          "body": {
-            "gameId": "c56a4180-65aa-42ec-a945-5fd21dec0538",
-            "playerOneName": {
-              /* Första spelares token från PlayerEntity tabellen */
-            },
-            "playerTwoName": {
-              /* Andra spelares token från PlayerEntity tabellen */
-            },
-            "playerOneMove": null,
-            "playerTwoMove": null,
-            "status": "ACTIVE",
-            "lastUpdated": "2023-06-24T10:20:30",
-            "PlayerOneWins": 0,
-            "PlayerTwoWins": 0
-          }
-        }
-        
-      )) // ta bort sen
-      window.location.href = 'game/index.html'; // ta bort sen
+     
 
     });
 }
 
 function fetchGames() {
-    fetch("http://rps-backend-production.up.railway.app/api/games/games", {
+    fetch("http://localhost:8080/api/games/games", {
       method: "get",
       headers: {
         'Content-Type': 'application/json',
@@ -149,3 +131,5 @@ function loadGames(games) {
 // }
 
 fetchGames();
+
+// createGame();
