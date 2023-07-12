@@ -7,3 +7,7 @@
 .game-link {
     margin-bottom: 10px;
 }
+
+.user-options {
+    display: none;
+}

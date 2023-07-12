@@ -1,21 +1,26 @@
 // open-games
 
-let createGameForm = document.querySelector('.create-game');
+let createGameBtn = document.querySelector('.create-game');
+let writeNameForm = document.querySelector('.write-name');
+let userOptions = document.querySelector('.user-options');
 let gamesList = document.querySelector('.open-games');
 let token = "";
 
-createGameForm.addEventListener('submit', (e) => {
+writeNameForm.addEventListener('submit', (e) => {
   e.preventDefault();
-
-  if (!token) getToken(createGame);
-
   let name = e.target[0].value;
-  setName(name)
-  
 
+  if (!token) getToken(setName, name);
 })
 
-function getToken(func) {
+createGameBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  
+  createGame()
+})
+
+
+function getToken(func, p1) {
 
     fetch("http://localhost:8080/api/user/auth/token", {
       method: "POST",
@@ -27,7 +32,7 @@ function getToken(func) {
     .then(response => response.json())
     .then(data => {
       token = data;
-      func()
+      func(p1)
     })
     .catch(error => {
       console.error(error)
@@ -54,7 +59,8 @@ function getToken(func) {
 // }
 
 function setName (name) {
-  fetch("http://localhost:8080/api/user/auth/token", {
+  console.log(token, name);
+  fetch("http://localhost:8080/api/user/name", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -64,9 +70,9 @@ function setName (name) {
         name
       })
     })
-    .then(response => response.json())
+    .then(response => response)
     .then(data => {
-      console.log(data)
+      userOptions.style.display = "block"
     })
     .catch(error => {
       console.log(error);
