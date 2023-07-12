@@ -30,6 +30,7 @@ function fetchGameInfo() {
     })
     .then(response => response.json())
     .then(data => {
+      console.log(data, "gameData")
         gameData = data
       // update game score:
       userScore_span.innerHTML = gameData.playerOneWins;

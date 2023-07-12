@@ -122,13 +122,45 @@ function fetchGames() {
     });
 }
 
+function joinGame(gameId) {
+  console.log(gameId, token, "getting game and player id")
+  fetch(`http://localhost:8080/api/games/join/${gameId}`, {
+    method: "post",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      // playerId: token
+      playerId: token
+      
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data, "joined game")
+    // localStorage.setItem("gameInfo", JSON.stringify({
+    //   gameId: gameId,
+    //   playerOne: token
+    // }))
+
+    // window.location.href = 'game/index.html';
+  })
+  .catch(error => {
+    console.log(error);
+  });
+}
+
 function loadGames(games) {
   games.forEach(game => {
     let gameLink = document.createElement("a");
 
     gameLink.classList.add("game-link");
-    gameLink.href = `./game/${game.id}`;
     gameLink.innerText = game.id
+
+    gameLink.addEventListener("click", () => {
+
+      joinGame(game.id)
+    })
     
     gamesList.appendChild(gameLink);
   })
