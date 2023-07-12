@@ -7,15 +7,15 @@ let token = "";
 createGameForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  if (!token) getToken();
+  if (!token) getToken(createGame);
 
   let name = e.target[0].value;
   setName(name)
-  createGame()
+  
 
 })
 
-function getToken() {
+function getToken(func) {
 
     fetch("http://localhost:8080/api/user/auth/token", {
       method: "POST",
@@ -27,6 +27,7 @@ function getToken() {
     .then(response => response.json())
     .then(data => {
       token = data;
+      func()
     })
     .catch(error => {
       console.error(error)
@@ -87,8 +88,9 @@ function createGame() {
     .then(response => response.json())
     .then(data => {
       console.log(data)
-      window.location.href = 'game/index.html';
+
       localStorage.setItem("gameInfo", JSON.stringify(data))
+      window.location.href = 'game/index.html';
     })
     .catch(error => {
       console.log(error, "createGame");
@@ -106,6 +108,7 @@ function fetchGames() {
     })
     .then(response => response.json())
     .then(data => {
+      console.log(data, "games")
       loadGames(data)
     })
     .catch(error => {
@@ -119,6 +122,7 @@ function loadGames(games) {
 
     gameLink.classList.add("game-link");
     gameLink.href = `./game/${game.id}`;
+    gameLink.innerText = game.id
     
     gamesList.appendChild(gameLink);
   })

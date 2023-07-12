@@ -1,0 +1,9 @@
+.open-games {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.game-link {
+    margin-bottom: 10px;
+}
