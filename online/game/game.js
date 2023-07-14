@@ -14,6 +14,8 @@ const result_p = document.querySelector('.result > p');
 const rock_div = document.getElementById('r');
 const paper_div = document.getElementById('p');
 const scissors_div = document.getElementById('s');
+const user1Label = document.getElementById('user-label');
+const user2Label = document.getElementById('computer-label');
 
 function fetchGameInfo() {
     if (!gameInfo) return
@@ -30,12 +32,21 @@ function fetchGameInfo() {
     })
     .then(response => response.json())
     .then(data => {
+      console.log(gameInfo);
       console.log(data, "gameData")
         gameData = data
       // update game score:
-      userScore_span.innerHTML = gameData.playerOneWins;
-      user2Score_span.innerHTML = gameData.playerTwoWins;
+      if (gameInfo.playerOne.playerName == gameData.playerOne) {
+            user1Label.innerText = gameInfo.playerOne.playerName
+            user2Label.innerText = gameData.playerTwo
+          } else {
+            user1Label.innerText = gameData.playerOne
+            user2Label.innerText = gameInfo.playerOne.playerName
+    }
+            userScore_span.innerHTML = gameData.playerOneWins;
+            user2Score_span.innerHTML = gameData.playerTwoWins;
     })
+    
     .catch(error => {
       console.log(error, "createGame");
      

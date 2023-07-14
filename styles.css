@@ -112,3 +112,21 @@ header > h1 {
     box-shadow: 0 0 10px #25292b;
 }
 
+.play-online-btn-container{
+    text-align: center;
+}
+
+.play-online-btn {
+    margin-top: 2em;
+    background-color: white;
+    padding: 1.5em;
+    border-radius: 1em;
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid #337ab7;
+    color: #333333;
+    font-weight: bold;
+    
+    
+}
+

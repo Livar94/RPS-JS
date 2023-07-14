@@ -5,10 +5,11 @@ let writeNameForm = document.querySelector('.write-name');
 let userOptions = document.querySelector('.user-options');
 let gamesList = document.querySelector('.open-games');
 let token = "";
+let name = "";
 
 writeNameForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  let name = e.target[0].value;
+   name = e.target[0].value;
 
   if (!token) getToken(setName, name);
 })
@@ -124,26 +125,29 @@ function fetchGames() {
 
 function joinGame(gameId) {
   console.log(gameId, token, "getting game and player id")
-  fetch(`http://localhost:8080/api/games/join/${gameId}`, {
+  fetch(`http://localhost:8080/api/games/join`, {
     method: "post",
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json' , 
+      'gameId': gameId,
     },
     body: JSON.stringify({
       // playerId: token
-      playerId: token
+      playerId: token,   
+
+      
       
     })
   })
   .then(response => response.json())
   .then(data => {
     console.log(data, "joined game")
-    // localStorage.setItem("gameInfo", JSON.stringify({
-    //   gameId: gameId,
-    //   playerOne: token
-    // }))
+    localStorage.setItem("gameInfo", JSON.stringify({
+      gameId: gameId,
+      playerOne: {playerId: token, playerName: name}
+    }))
 
-    // window.location.href = 'game/index.html';
+    window.location.href = 'game/index.html';
   })
   .catch(error => {
     console.log(error);
