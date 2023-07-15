@@ -17,6 +17,7 @@ const scissors_div = document.getElementById('s');
 const user1Label = document.getElementById('user-label');
 const user2Label = document.getElementById('computer-label');
 
+
 function fetchGameInfo() {
     if (!gameInfo) return
     fetch(`http://localhost:8080/api/games/${gameInfo?.gameId}`,{
@@ -45,7 +46,20 @@ function fetchGameInfo() {
     }
             userScore_span.innerHTML = gameData.playerOneWins;
             user2Score_span.innerHTML = gameData.playerTwoWins;
+
+            if (gameInfo.playerOne.playerName == gameData.playerOne) {
+              // result_p.innerText = gameData.playerOneMove
+              result_p.innerText = `You ${gameData.playerOneMove}, ${gameData.playerTwo} ${gameData.playerTwoMove}`
+
+            } else {
+              // result_p.innerText = gameData.playerTwoMove
+              result_p.innerText = `You ${gameData.playerTwoMove}, ${gameData.playerOne} ${gameData.playerOneMove}`
+            };
     })
+
+    
+
+
     
     .catch(error => {
       console.log(error, "createGame");
