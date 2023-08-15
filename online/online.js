@@ -159,11 +159,11 @@ function loadGames(games) {
     let gameLink = document.createElement("a");
 
     gameLink.classList.add("game-link");
-    gameLink.innerText = game.id
+    gameLink.innerText = game.gameId
 
     gameLink.addEventListener("click", () => {
 
-      joinGame(game.id)
+      joinGame(game.gameId)
     })
     
     gamesList.appendChild(gameLink);

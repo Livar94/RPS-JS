@@ -19,7 +19,8 @@ const user2Label = document.getElementById('computer-label');
 
 
 function fetchGameInfo() {
-    if (!gameInfo) return
+    // if (!gameInfo) return
+    if (!gameInfo.gameId) return; 
     fetch(`http://localhost:8080/api/games/${gameInfo?.gameId}`,{
       method: "post",
       headers: {
@@ -27,7 +28,7 @@ function fetchGameInfo() {
       },
       body: JSON.stringify({
         // playerId: token
-        playerId: gameInfo?.playerOne?.playerId
+        playerId: gameInfo.playerOne.playerId
         
       })
     })
