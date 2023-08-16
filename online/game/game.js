@@ -41,14 +41,7 @@ function fetchGameInfo() {
             userScore_span.innerHTML = gameData.playerOneWins;
             user2Score_span.innerHTML = gameData.playerTwoWins;
 
-            if (gameInfo.playerOne.playerName == gameData.playerOne) {
-
-              result_p.innerText = `You ${gameData.playerOneMove}, ${gameData.playerTwo} ${gameData.playerTwoMove}`
-
-            } else {
-
-              result_p.innerText = `You ${gameData.playerTwoMove}, ${gameData.playerOne} ${gameData.playerOneMove}`
-            };
+           
     })
 
     

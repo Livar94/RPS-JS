@@ -130,18 +130,19 @@ function joinGame(gameId) {
 }
 
 function loadGames(games) {
-  games.forEach(game => {
-    let gameLink = document.createElement("a");
+  games.forEach((game, index) => { // `index` will give us the position of the game in the array
+    let gameButton = document.createElement("button");
 
-    gameLink.classList.add("game-link");
-    gameLink.innerText = game.gameId
+ 
 
-    gameLink.addEventListener("click", () => {
+    gameButton.classList.add("game-button");
+    gameButton.innerText = `Game #${index + 1}`; // Add 1 to index because array indices start at 0
 
+    gameButton.addEventListener("click", () => {
       joinGame(game.gameId)
     })
-    
-    gamesList.appendChild(gameLink);
+
+    gamesList.appendChild(gameButton);
   })
 }
 
