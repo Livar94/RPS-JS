@@ -21,7 +21,7 @@ createGameBtn.addEventListener('click', (e) => {
 
 function getToken(func, p1) {
 
-    fetch("http://localhost:8080/api/user/auth/token", {
+    fetch("http://localhost:7979/api/user/auth/token", {
       method: "POST",
 
     })
@@ -38,7 +38,7 @@ function getToken(func, p1) {
 
 function setName (name) {
   console.log(token, name);
-  fetch("http://localhost:8080/api/user/name", {
+  fetch("http://localhost:7979/api/user/name", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ function setName (name) {
 }
 
 function createGame() {
-  fetch("http://localhost:8080/api/games/game", {
+  fetch("http://localhost:7979/api/games/game", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +83,7 @@ function createGame() {
 }
 
 function fetchGames() {
-    fetch("http://localhost:8080/api/games/games", {
+    fetch("http://localhost:7979/api/games/games", {
       method: "get",
       headers: {
         'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ function fetchGames() {
 
 function joinGame(gameId) {
   console.log(gameId, token, "getting game and player id")
-  fetch(`http://localhost:8080/api/games/join`, {
+  fetch(`http://localhost:7979/api/games/join`, {
     method: "post",
     headers: {
       'Content-Type': 'application/json' , 

@@ -15,7 +15,7 @@ const user2Label = document.getElementById('computer-label');
 
 function fetchGameInfo() {
     if (!gameInfo.gameId) return; 
-    fetch(`http://localhost:8080/api/games/${gameInfo?.gameId}`,{
+    fetch(`http://localhost:7979/api/games/${gameInfo?.gameId}`,{
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ setInterval(fetchGameInfo, 1000);
 
 function makeMove(move) {
     if (!gameInfo) return
-    fetch(`http://localhost:8080/api/games/move`,{
+    fetch(`http://localhost:7979/api/games/move`,{
       method: "post",
       headers: {
         "Content-Type": "application/json",
