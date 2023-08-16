@@ -1,12 +1,7 @@
 let gameInfo = JSON.parse(localStorage.getItem("gameInfo")); // sen få tillbaks bara game id?
 console.log(gameInfo);
 let gameData = {};
-// setTimeout(function() {
-//     console.log(gameInfo);
-//   }, 2000);
 
-// let user1Score = gameData.PlayerOneWins ;
-// let user2Score = gameData.PlayerTwoWins;
 const userScore_span = document.getElementById('user-score');
 const user2Score_span = document.getElementById('computer-score');
 const scoreBoard_div = document.querySelector('.score-board');
@@ -19,7 +14,6 @@ const user2Label = document.getElementById('computer-label');
 
 
 function fetchGameInfo() {
-    // if (!gameInfo) return
     if (!gameInfo.gameId) return; 
     fetch(`http://localhost:8080/api/games/${gameInfo?.gameId}`,{
       method: "post",
@@ -27,7 +21,6 @@ function fetchGameInfo() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // playerId: token
         playerId: gameInfo.playerOne.playerId
         
       })
@@ -37,7 +30,7 @@ function fetchGameInfo() {
       console.log(gameInfo);
       console.log(data, "gameData")
         gameData = data
-      // update game score:
+
       if (gameInfo.playerOne.playerName == gameData.playerOne) {
             user1Label.innerText = gameInfo.playerOne.playerName
             user2Label.innerText = gameData.playerTwo
@@ -49,11 +42,11 @@ function fetchGameInfo() {
             user2Score_span.innerHTML = gameData.playerTwoWins;
 
             if (gameInfo.playerOne.playerName == gameData.playerOne) {
-              // result_p.innerText = gameData.playerOneMove
+
               result_p.innerText = `You ${gameData.playerOneMove}, ${gameData.playerTwo} ${gameData.playerTwoMove}`
 
             } else {
-              // result_p.innerText = gameData.playerTwoMove
+
               result_p.innerText = `You ${gameData.playerTwoMove}, ${gameData.playerOne} ${gameData.playerOneMove}`
             };
     })
@@ -78,7 +71,6 @@ function makeMove(move) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // playerId: token
         playerId: gameInfo?.playerOne?.playerId,
         gameId: gameInfo?.gameId,
         playerMove: move
@@ -99,11 +91,6 @@ function makeMove(move) {
 
 }
 
-// function getComputerChoice() {
-//     const choices = ['r', 'p', 's'];
-//     const randomNumber = Math.floor (Math.random() * 3);
-//     return choices[randomNumber];
-// }
 
 function convertToWord(letter) {
     if (letter === 'r') return 'ROCK';
@@ -111,57 +98,6 @@ function convertToWord(letter) {
     return 'SCISSORS'
 }
 
-// function win(userChoice, computerChoice){
-//     userScore++;
-//     userScore_span.innerHTML = userScore;
-//     computerScore_span.innerHTML = user2Score;
-//     const samllUserWord = 'user'.fontsize(3);
-//     const samllCompWord = 'comp'.fontsize(3);
-//     result_p.innerHTML = `${convertToWord(userChoice)}${samllUserWord} beats ${convertToWord(computerChoice)}${samllCompWord}. You Win! `;
-//     // document.getElementById(userChoice).classList.add('green-glow');
-//     // setTimeout(function() {}, 1000);
-// }
-
-// function lose(userChoice, computerChoice) {
-//     user2Score++;
-//     userScore_span.innerHTML = userScore;
-//     computerScore_span.innerHTML = user2Score;
-//     const samllUserWord = 'user'.fontsize(3);
-//     const samllCompWord = 'comp'.fontsize(3);
-//     result_p.innerHTML = `${convertToWord(userChoice)}${samllUserWord} loses to ${convertToWord(computerChoice)}${samllCompWord}. You Lost... `;
-//     // document.getElementById(computerChoice).classList.add('red-glow');
-// }
-
-// function draw(userChoice, computerChoice) {
-//     const samllUserWord = 'user'.fontsize(3);
-//     const samllCompWord = 'comp'.fontsize(3);
-//     result_p.innerHTML = `${convertToWord(userChoice)}${samllUserWord} = ${convertToWord(computerChoice)}${samllCompWord}. Draw`;
-//     // document.getElementById(userChoice).classList.add('gray-glow');
-// }
-
-
-
-// function game(userChoice) {
-//     const computerChoice = getComputerChoice();
-//     switch (userChoice + computerChoice) {
-//         case "rs":
-//         case "pr":
-//         case "sp":
-//             win(userChoice + computerChoice);
-//             break;   
-//         case "rp":
-//         case "ps":
-//         case "sr":
-//             lose(userChoice + computerChoice);
-//             break;
-//         case "rr":
-//         case "pp":
-//         case "ss":
-//             draw(userChoice + computerChoice);
-//             break; 
-//     }
-
-// }
 
 function main() {
 

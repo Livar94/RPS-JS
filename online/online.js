@@ -1,5 +1,3 @@
-// open-games
-
 let createGameBtn = document.querySelector('.create-game');
 let writeNameForm = document.querySelector('.write-name');
 let userOptions = document.querySelector('.user-options');
@@ -25,10 +23,7 @@ function getToken(func, p1) {
 
     fetch("http://localhost:8080/api/user/auth/token", {
       method: "POST",
-    //   headers: new Headers({
-    //     accept: 'application/json',
-    //     'Content-Type': 'application/json'
-    // })
+
     })
     .then(response => response.json())
     .then(data => {
@@ -40,24 +35,6 @@ function getToken(func, p1) {
     });
 }
 
-// async function getToken() {
-
-//   try {
-//     const response = await fetch("http://localhost:8080/api/user/auth/token", {
-//       method: "POST", // or 'PUT'
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-
-//     const result = await response.json();
-//     console.log("Success:", result);
-//     // token = result;
-//   } catch (error) {
-//     console.error("Error:", error);
-//   }
-
-// }
 
 function setName (name) {
   console.log(token, name);
@@ -87,7 +64,6 @@ function createGame() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // playerId: token
         playerId: token
         
       })
@@ -132,7 +108,6 @@ function joinGame(gameId) {
       'gameId': gameId,
     },
     body: JSON.stringify({
-      // playerId: token
       playerId: token,   
 
       
@@ -171,11 +146,8 @@ function loadGames(games) {
 }
 
 
-// function generateToken(){
-//   var openGames = document.querySelector('.generate-token');
-//   openGames.innerHTML = "";
-// }
+
 
 fetchGames();
 
-// createGame();
+

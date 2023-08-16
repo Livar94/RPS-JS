@@ -27,8 +27,6 @@ function win(userChoice, computerChoice){
     const samllUserWord = 'user'.fontsize(3);
     const samllCompWord = 'comp'.fontsize(3);
     result_p.innerHTML = `${convertToWord(userChoice)}${samllUserWord} beats ${convertToWord(computerChoice)}${samllCompWord}. You Win! `;
-    // document.getElementById(userChoice).classList.add('green-glow');
-    // setTimeout(function() {}, 1000);
 }
 
 function lose(userChoice, computerChoice) {
@@ -38,14 +36,12 @@ function lose(userChoice, computerChoice) {
     const samllUserWord = 'user'.fontsize(3);
     const samllCompWord = 'comp'.fontsize(3);
     result_p.innerHTML = `${convertToWord(userChoice)}${samllUserWord} loses to ${convertToWord(computerChoice)}${samllCompWord}. You Lost... `;
-    // document.getElementById(computerChoice).classList.add('red-glow');
 }
 
 function draw(userChoice, computerChoice) {
     const samllUserWord = 'user'.fontsize(3);
     const samllCompWord = 'comp'.fontsize(3);
     result_p.innerHTML = `${convertToWord(userChoice)}${samllUserWord} = ${convertToWord(computerChoice)}${samllCompWord}. Draw`;
-    // document.getElementById(userChoice).classList.add('gray-glow');
 }
 
 
